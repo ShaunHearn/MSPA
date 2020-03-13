@@ -14,7 +14,7 @@ h3 = 0.5;           % Upper cladding
 
 % Horizontal dimensions:
 rh = 1.1;           % Ridge height
-rw = 1.0;           % Ridge half-width
+%rw = 1.0;           % Ridge half-width
 side = 1.5;         % Space on side
 
 % Grid size:
@@ -36,58 +36,26 @@ for gg = 1:nmodes
     figure();
     
     % Using Contour
-    subplot(2,2,1,1);
+    subplot(2,2,1);
     contourmode(x,y,Hx(:,:,gg));
     title('Hx (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
 
-    subplot(2,2,1,2);
+    subplot(2,2,2);
     contourmode(x,y,Hy(:,:,gg));
     title('Hy (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
     
     % Using Surf
-    subplot(2,2,2,1);
-    contourmode_Edit(x,y,Hx(:,:,gg));
+    subplot(2,2,3);
+    contourmode_Edited(x,y,Hx(:,:,gg));
     title('Hx (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
 
-    subplot(2,2,2,2);
-    contourmode_Edit(x,y,Hy(:,:,gg));
+    subplot(2,2,4);
+    contourmode_Edited(x,y,Hy(:,:,gg));
     title('Hy (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
     
 end
 
-% Next consider the fundamental TM mode
-% (same calculation, but with opposite symmetry)
-
-[Hx,Hy,neff] = wgmodes(lambda,n2,nmodes,dx,dy,eps,'000S');
-
-fprintf(1,'neff = %.6f\n',neff);
-
-for hh =1:nmodes
-    figure();
-    
-    % Using Contour
-    subplot(2,2,1,1);
-    contourmode(x,y,Hx(:,:,hh));
-    title('Hx (TM mode)'); xlabel('x'); ylabel('y'); 
-    for v = edges, line(v{:}); end
-
-    subplot(2,2,1,2);
-    contourmode(x,y,Hy(:,:,hh));
-    title('Hy (TM mode)'); xlabel('x'); ylabel('y'); 
-    for v = edges, line(v{:}); end
-    
-    % Using Surf
-     subplot(2,2,2,1);
-    contourmode_Edit(x,y,Hx(:,:,hh));
-    title('Hx (TM mode)'); xlabel('x'); ylabel('y'); 
-    for v = edges, line(v{:}); end
-
-    subplot(2,2,2,2);
-    contourmode(x,y,Hy(:,:,hh));
-    title('Hy (TM mode)'); xlabel('x'); ylabel('y'); 
-    for v = edges, line(v{:}); end
-end

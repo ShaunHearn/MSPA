@@ -4,7 +4,7 @@
 
 % Refractive indices:
 n1 = 3.34;          % Lower cladding
-n2 = 3.44;          % Core
+%n2 = 3.44;          % Core
 n3 = 1.00;          % Upper cladding (air)
 
 % Layer heights:
@@ -14,7 +14,7 @@ h3 = 0.5;           % Upper cladding
 
 % Horizontal dimensions:
 rh = 1.1;           % Ridge height
-%rw = 1.0;           % Ridge half-width
+rw = 1.0;           % Ridge half-width
 side = 1.5;         % Space on side
 
 % Grid size:
@@ -24,16 +24,16 @@ dy = 0.0125*8;        % grid size (vertical)
 lambda = 1.55;      % vacuum wavelength
 nmodes = 1;         % number of modes to compute
 
-rw = linspace(0.325,1,10);
+n2 = linspace(3.305,3.44,10);
 NEFF = zeros(1,10);
 
 for nn = 1:10
-[x,y,xc,yc,nx,ny,eps,edges] = waveguidemesh([n1,n2,n3],[h1,h2,h3], ...
-                                            rh,rw(nn),side,dx,dy); 
+[x,y,xc,yc,nx,ny,eps,edges] = waveguidemesh([n1,n2(nn),n3],[h1,h2,h3], ...
+                                            rh,rw,side,dx,dy); 
 
 % First consider the fundamental TE mode:
 
-[Hx,Hy,neff] = wgmodes(lambda,n2,nmodes,dx,dy,eps,'000A');
+[Hx,Hy,neff] = wgmodes(lambda,n2(nn),nmodes,dx,dy,eps,'000A');
 fprintf(1,'neff  = %.6f\n',neff);
 NEFF(nn) = neff;
 
@@ -68,7 +68,7 @@ end
 
 % Plot Neff
 figure()
-plot(rw,NEFF)
+plot(n2,NEFF)
 title('Neff');
 xlabel('Ridge Half-Width');
 ylabel('Neff');

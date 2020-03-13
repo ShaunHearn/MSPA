@@ -36,24 +36,24 @@ for gg = 1:nmodes
     figure();
     
     % Using Contour
-    subplot(2,2,1);
+    subplot(2,2,1,1);
     contourmode(x,y,Hx(:,:,gg));
     title('Hx (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
 
-    subplot(2,2,2);
+    subplot(2,2,1,2);
     contourmode(x,y,Hy(:,:,gg));
     title('Hy (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
     
     % Using Surf
-    subplot(2,2,3);
-    contourmode_Edited(x,y,Hx(:,:,gg));
+    subplot(2,2,2,1);
+    contourmode_Edit(x,y,Hx(:,:,gg));
     title('Hx (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
 
-    subplot(2,2,4);
-    contourmode_Edited(x,y,Hy(:,:,gg));
+    subplot(2,2,2,2);
+    contourmode_Edit(x,y,Hy(:,:,gg));
     title('Hy (TE mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
     
@@ -70,24 +70,24 @@ for hh =1:nmodes
     figure();
     
     % Using Contour
-    subplot(2,2,1);
+    subplot(2,2,1,1);
     contourmode(x,y,Hx(:,:,hh));
     title('Hx (TM mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
 
-    subplot(2,2,2);
+    subplot(2,2,1,2);
     contourmode(x,y,Hy(:,:,hh));
     title('Hy (TM mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
     
     % Using Surf
-     subplot(2,2,3);
-    contourmode_Edited(x,y,Hx(:,:,hh));
+     subplot(2,2,2,1);
+    contourmode_Edit(x,y,Hx(:,:,hh));
     title('Hx (TM mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
 
-    subplot(2,2,4);
-    contourmode_Edited(x,y,Hy(:,:,hh));
+    subplot(2,2,2,2);
+    contourmode(x,y,Hy(:,:,hh));
     title('Hy (TM mode)'); xlabel('x'); ylabel('y'); 
     for v = edges, line(v{:}); end
 end
